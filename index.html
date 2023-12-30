@@ -22,9 +22,26 @@
             top: 0;
             left: 0;
         }
+        #starInfo {
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+            display: none;
+        }
+        #emotionText {
+            color: blue;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+    <div id="starInfo">
+        <p>Informações da Estrela</p>
+        <p id="emotionText">Emoção: </p>
+    </div>
     <canvas id="starCanvas"></canvas>
     <script src="script.js"></script>
 </body>
