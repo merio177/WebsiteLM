@@ -4,12 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     canvas.height = window.innerHeight;
     const ctx = canvas.getContext('2d');
     const starInfo = document.getElementById('starInfo');
+    const introText = document.getElementById('introText');
+
 
     let stars = [];
 
     for (let i = 0; i < 100; i++) {
         stars.push(createStar(canvas, ctx, stars, starInfo));
     }
+
+    document.addEventListener('click', function() {
+        introText.classList.add('hidden'); // Adiciona a classe 'hidden' para ocultar
+    });
 
     document.addEventListener('click', function(event) {
         if (!event.target.classList.contains('star')) {
