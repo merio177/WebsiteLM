@@ -32,15 +32,28 @@ document.addEventListener('DOMContentLoaded', function() {
         stars.push(createStar(canvas, ctx, stars, starInfo));
     }
 
-    document.addEventListener('click', function() {
-        introText.classList.add('hidden'); // Adiciona a classe 'hidden' para ocultar
-    });
-
     document.addEventListener('click', function(event) {
         if (!event.target.classList.contains('star')) {
             starInfo.style.display = 'none';
         }
     });
+
+    //REMOVER NO FIM
+    document.getElementById('introText').addEventListener('click', function() {
+        // Ocultar introText e introBackground
+        this.style.display = 'none';
+        document.getElementById('introBackground').style.display = 'none';
+    
+        // Garantir que o starCanvas esteja visível
+        // (Se starCanvas já estiver visível por padrão, esta linha pode ser desnecessária)
+        document.getElementById('starCanvas').style.display = 'block';
+    
+        // Rolando para a posição do starCanvas
+        const starCanvas = document.getElementById('starCanvas');
+        starCanvas.scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    
 
     userInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
@@ -53,8 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
     delayedTextInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter' && delayedTextInput.value.trim() !== '') {
             const thirdText = document.getElementById('thirdText');
+            const h1Element = thirdText.querySelector('h1'); // Seleciona o elemento <h1> dentro de thirdText
+    
+            // Atualiza o texto de <h1> em 'thirdText' com o valor de 'delayedTextInput'
+            h1Element.textContent = "I’m feeling " + delayedTextInput.value.trim() + " because Y.";
+    
             thirdText.style.display = 'block';
-            delayedText.style.display = 'none'; // Opcional: ocultar após inserção
+            delayedText.style.display = 'none'; // Oculta delayedText
         }
     });
 
@@ -66,31 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-$(document).ready(async function() {
-    const carouselText = [
-      {text: "happy", color: "yellow"},
-      {text: "sad", color: "blue"},
-      {text: "excited", color: "orange"}
-      // Adicione mais adjetivos conforme desejar
-    ];
-  
-    carousel(carouselText, "#carouselText");
-  
-    $('#delayedTextInput').on('keypress', function(event) {
-      if (event.key === 'Enter') {
-        const userInput = $('#delayedTextInput').val();
-        if (userInput.trim() !== '') {
-          console.log("Usuário digitou:", userInput);
-          // Aqui você pode lidar com o texto inserido pelo usuário
-        }
-      }
-    });
-  });
-  
-  // Funções typeSentence, deleteSentence, carousel, updateFontColor e waitForMs
-  // Igual ao seu código original
-  
+// Canvas - Estrelas
 
+//Cria Estrela
 function createStar(canvas, ctx, stars, starInfo, x = Math.random() * canvas.width, y = Math.random() * canvas.height) {
     const star = document.createElement('div');
     star.className = 'star';
@@ -115,13 +111,15 @@ function createStar(canvas, ctx, stars, starInfo, x = Math.random() * canvas.wid
         starInfo.style.top = `${event.pageY}px`;
 
         const emotion = star.getAttribute('data-emotion');
-        starInfo.innerHTML = `Informações da Estrela:<br>Coordenada X: ${event.pageX}<br>Coordenada Y: ${event.pageY}<br>Emoção: ${emotion}`;
+        starInfo.innerHTML = `Informações da Estrela:<br>Coordenada X: ${event.pageX}<br>Coordenada Y: ${event.pageY}<br>Emoção: ${emotion}<br>Motivo:`;
     });
 
     document.body.appendChild(star);
+    return { x, y, emotion: getRandomEmotion() };
     return star;
 }
 
+//Se estiver muito perto, não deixa criar a estrela
 function isSpaceFree(x, y, stars, minDistance = 50) {
     return stars.every(star => {
         const starX = parseInt(star.style.left);
@@ -131,6 +129,7 @@ function isSpaceFree(x, y, stars, minDistance = 50) {
     });
 }
 
+//Linha de Emoção
 function drawLines(ctx, stars, currentStar) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     const currentEmotion = currentStar.getAttribute('data-emotion');
@@ -146,12 +145,39 @@ function drawLines(ctx, stars, currentStar) {
         // Desenha linhas para as outras estrelas com a mesma emoção
         connectedStars.forEach(targetStar => {
             ctx.lineTo(targetStar.offsetLeft + targetStar.offsetWidth / 2, targetStar.offsetTop + targetStar.offsetHeight / 2);
+            ctx.moveTo(targetStar.offsetLeft + targetStar.offsetWidth / 2, targetStar.offsetTop + targetStar.offsetHeight / 2);
         });
-
-        // Volta para a estrela atual para fechar o caminho
-        ctx.lineTo(currentStar.offsetLeft + currentStar.offsetWidth / 2, currentStar.offsetTop + currentStar.offsetHeight / 2);
 
         ctx.strokeStyle = 'white';
         ctx.stroke();
     }
 }
+
+let isDragging = false;
+let lastX, lastY;
+let offsetX = 0, offsetY = 0; // Esses offsets controlarão a posição das estrelas
+
+canvas.addEventListener('mousedown', function(event) {
+    isDragging = true;
+    lastX = event.clientX;
+    lastY = event.clientY;
+});
+
+document.addEventListener('mouseup', function() {
+    isDragging = false;
+});
+
+canvas.addEventListener('mousemove', function(event) {
+    if (isDragging) {
+        const dx = event.clientX - lastX;
+        const dy = event.clientY - lastY;
+        lastX = event.clientX;
+        lastY = event.clientY;
+
+        offsetX += dx;
+        offsetY += dy;
+        redrawUniverse();
+    }
+});
+
+
