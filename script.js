@@ -5,7 +5,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const ctx = canvas.getContext('2d');
     const starInfo = document.getElementById('starInfo');
     const introText = document.getElementById('introText');
+    const userInput = document.getElementById('userInput');
+    const delayedTextInput = document.getElementById('delayedTextInput');
 
+
+    setTimeout(function() {
+        const introText = document.getElementById('introText');
+        const intermediateText = document.getElementById('intermediateText');
+        
+        introText.style.display = 'none';
+        intermediateText.style.display = 'block';
+    }, 5000); // 5000 milissegundos = 5 segundos
+
+    // Exibir o delayedText após o segundo intervalo
+    setTimeout(function() {
+        const intermediateText = document.getElementById('intermediateText');
+        const delayedText = document.getElementById('delayedText');
+
+        intermediateText.style.display = 'none';
+        delayedText.style.display = 'block';
+    }, 10000); // 10000 milissegundos = 10 segundos
 
     let stars = [];
 
@@ -23,6 +42,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    userInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            thirdText.style.display = 'none'; // Oculta o terceiro texto
+            document.getElementById('introBackground').style.display = 'none'; // Opcional: oculta o fundo preto
+            // Aqui você pode adicionar qualquer outra ação que deseja executar após pressionar Enter
+        }
+    });
+
+    delayedTextInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter' && delayedTextInput.value.trim() !== '') {
+            const thirdText = document.getElementById('thirdText');
+            thirdText.style.display = 'block';
+            delayedText.style.display = 'none'; // Opcional: ocultar após inserção
+        }
+    });
+
     document.addEventListener('dblclick', function(event) {
         if (isSpaceFree(event.pageX, event.pageY, stars)) {
             const newStar = createStar(canvas, ctx, stars, starInfo, event.pageX, event.pageY);
@@ -30,6 +65,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+$(document).ready(async function() {
+    const carouselText = [
+      {text: "happy", color: "yellow"},
+      {text: "sad", color: "blue"},
+      {text: "excited", color: "orange"}
+      // Adicione mais adjetivos conforme desejar
+    ];
+  
+    carousel(carouselText, "#carouselText");
+  
+    $('#delayedTextInput').on('keypress', function(event) {
+      if (event.key === 'Enter') {
+        const userInput = $('#delayedTextInput').val();
+        if (userInput.trim() !== '') {
+          console.log("Usuário digitou:", userInput);
+          // Aqui você pode lidar com o texto inserido pelo usuário
+        }
+      }
+    });
+  });
+  
+  // Funções typeSentence, deleteSentence, carousel, updateFontColor e waitForMs
+  // Igual ao seu código original
+  
 
 function createStar(canvas, ctx, stars, starInfo, x = Math.random() * canvas.width, y = Math.random() * canvas.height) {
     const star = document.createElement('div');
