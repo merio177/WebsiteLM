@@ -1,4 +1,4 @@
-## Beyond Wordds - Multimedia Lab Project
+## Beyond Words - Multimedia Lab Project
 
 ### University of Porto, Faculty of Engineering
 
