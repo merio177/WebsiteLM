@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Céu Estrelado Interativo</title>
+</head>
     <style>
         body, html {
             margin: 0;
@@ -107,7 +108,6 @@
             z-index: 3;
     }
     </style>
-</head>
 <body>
     <div id="introBackground"></div>
     <div id="introText">
@@ -117,17 +117,18 @@
         <h1>to an experience beyond words</h1>
     </div>
     <div id="delayedText">
-        <h1>Today, I'm feeling _______.</h1>
+        <h1>How are you feeling today?</h1>
+        <p>I'm feeling .</p>
         <input type="text" id="delayedTextInput" placeholder="Digite aqui...">
     </div>
     <div id="thirdText">
-        <h1>I’m feeling X because Y.</h1>
+        <h1>Why are you feeling like that?</h1>
+        <p>I’m feeling Y because X.</p>
         <input type="text" id="userInput" placeholder="Digite aqui...">
     </div>
     <div id="starInfo">
         <p>Informações da Estrela</p>
         <p id="emotionText">Emoção: </p>
-        <p>Teste</p>
     </div>
     <canvas id="starCanvas"></canvas>
     <script src="script.js"></script>

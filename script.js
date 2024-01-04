@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         introText.style.display = 'none';
         intermediateText.style.display = 'block';
-    }, 5000); // 5000 milissegundos = 5 segundos
+    }, 2000); // 5000 milissegundos = 5 segundos
 
     // Exibir o delayedText após o segundo intervalo
     setTimeout(function() {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         intermediateText.style.display = 'none';
         delayedText.style.display = 'block';
-    }, 10000); // 10000 milissegundos = 10 segundos
+    }, 7000); // 10000 milissegundos = 10 segundos
 
     let stars = [];
 
@@ -37,24 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             starInfo.style.display = 'none';
         }
     });
-
-    //REMOVER NO FIM
-    document.getElementById('introText').addEventListener('click', function() {
-        // Ocultar introText e introBackground
-        this.style.display = 'none';
-        document.getElementById('introBackground').style.display = 'none';
     
-        // Garantir que o starCanvas esteja visível
-        // (Se starCanvas já estiver visível por padrão, esta linha pode ser desnecessária)
-        document.getElementById('starCanvas').style.display = 'block';
-    
-        // Rolando para a posição do starCanvas
-        const starCanvas = document.getElementById('starCanvas');
-        starCanvas.scrollIntoView({ behavior: 'smooth' });
-    });
-    
-    
-
     userInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             thirdText.style.display = 'none'; // Oculta o terceiro texto
@@ -64,17 +47,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     delayedTextInput.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter' && delayedTextInput.value.trim() !== '') {
-            const thirdText = document.getElementById('thirdText');
-            const h1Element = thirdText.querySelector('h1'); // Seleciona o elemento <h1> dentro de thirdText
-    
-            // Atualiza o texto de <h1> em 'thirdText' com o valor de 'delayedTextInput'
-            h1Element.textContent = "I’m feeling " + delayedTextInput.value.trim() + " because Y.";
-    
-            thirdText.style.display = 'block';
+        if (event.key === 'Enter') {
+            const thirdText = document.getElementById('thirdText');  
+            const delayedText = document.getElementById('delayedText');
+ 
+            
             delayedText.style.display = 'none'; // Oculta delayedText
+            thirdText.style.display = 'block';
         }
     });
+    
 
     document.addEventListener('dblclick', function(event) {
         if (isSpaceFree(event.pageX, event.pageY, stars)) {
@@ -115,7 +97,6 @@ function createStar(canvas, ctx, stars, starInfo, x = Math.random() * canvas.wid
     });
 
     document.body.appendChild(star);
-    return { x, y, emotion: getRandomEmotion() };
     return star;
 }
 
@@ -152,32 +133,3 @@ function drawLines(ctx, stars, currentStar) {
         ctx.stroke();
     }
 }
-
-let isDragging = false;
-let lastX, lastY;
-let offsetX = 0, offsetY = 0; // Esses offsets controlarão a posição das estrelas
-
-canvas.addEventListener('mousedown', function(event) {
-    isDragging = true;
-    lastX = event.clientX;
-    lastY = event.clientY;
-});
-
-document.addEventListener('mouseup', function() {
-    isDragging = false;
-});
-
-canvas.addEventListener('mousemove', function(event) {
-    if (isDragging) {
-        const dx = event.clientX - lastX;
-        const dy = event.clientY - lastY;
-        lastX = event.clientX;
-        lastY = event.clientY;
-
-        offsetX += dx;
-        offsetY += dy;
-        redrawUniverse();
-    }
-});
-
-
