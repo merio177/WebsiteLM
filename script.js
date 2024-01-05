@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         "Empolgado": "red",
         "Pensativo": "green"
     };
-    
-    
 
     setTimeout(function() {
         const introText = document.getElementById('introText');
@@ -205,8 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-
-// Carrossel typing Effect
+    // Carrossel typing Effect
     class TypeWriter {
         constructor(txtElement, words, wait = 3000) {
           this.txtElement = txtElement;
