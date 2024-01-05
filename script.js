@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let stars = [];
     let motivoEstrela = ''; // Variável global para armazenar o motivo
 
+    const emocoesConhecidas = ["feliz", "triste", "empolgado", "pensativo", "alegre", "angustiado", "calmo", "eufórico"]; // Todas em minúsculas
+
+
     //Cores de cada emoção
     const emotionColors = {
         "Feliz": "yellow",
@@ -57,9 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
     thirdTextInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             const inputValue = this.value.trim().toLowerCase(); // Converte a entrada para minúsculas
-            
+    
             if (inputValue === '') {
                 alert('Por favor, insere alguma palavra que expresse a tua emoção!');
+            } else if (inputValue.split(' ').length > 1) {
+                // Verifica se a entrada contém mais de uma palavra
+                alert('Por favor, insira apenas uma palavra sem espaços.');
             } else if (!emocoesConhecidas.includes(inputValue)) {
                 // Se a emoção inserida não estiver na lista de emoções conhecidas
                 alert('Não conheço essa emoção. Tente novamente com uma emoção diferente.');
@@ -231,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
           this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
       
           // change color for data-text
-          this.txtElement.innerHTML = `<span class="txt" style="color: #e2000f;">${this.txt}</span>`;
+          this.txtElement.innerHTML = `<span class="txt" style="color: #ffffff;">${this.txt}</span>`;
       
           // Initial Type Speed
           let typeSpeed = 100;
@@ -257,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
           setTimeout(() => this.type(), typeSpeed);
         }
     }
+    init()
 
     function init() {
         const txtElement = document.querySelector('.txt-type');
