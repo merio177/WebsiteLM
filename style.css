@@ -88,7 +88,7 @@
     z-index: 2; /* Atrás do texto introdutório, mas acima das estrelas */
     display: block; /* Inicialmente visível */
   }
-  #introText {
+  #firstText {
     position: absolute;
     top: 0;
     left: 0;
@@ -105,7 +105,7 @@
   .hidden {
     display: none;
   }
-  #delayedText {
+  #thirdText {
     position: absolute;
     top: 0;
     left: 0;
@@ -119,8 +119,8 @@
     display: none; /* Inicialmente oculto */
     z-index: 3; /* Acima do texto introdutório */
   }
-  #thirdText {
-    /* Estilos semelhantes ao #delayedText */
+  #fourText {
+    /* Estilos semelhantes ao #thirdText */
     position: absolute;
     top: 0;
     left: 0;
@@ -134,8 +134,8 @@
     display: none; /* Inicialmente oculto */
     z-index: 4; /* Acima do texto anterior */
   }
-  #intermediateText {
-    /* Estilos semelhantes ao #introText e #delayedText */
+  #secondText {
+    /* Estilos semelhantes ao #firstText e #thirdText */
     position: absolute;
     top: 0;
     left: 0;

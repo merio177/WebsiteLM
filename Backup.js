@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let stars = [];
     let motivoEstrela = ''; // Variável global para armazenar o motivo
 
+    const emocoesConhecidas = ["feliz", "triste", "empolgado", "pensativo", "alegre", "angustiado", "calmo", "eufórico"]; // Todas em minúsculas
+
+
     //Cores de cada emoção
     const emotionColors = {
         "Feliz": "yellow",
