@@ -108,7 +108,7 @@ header {
     position: absolute;
     top: 0;
     right: -100%;
-    width: 300px;
+    width: 400px;
     height: 100vh;
     background: rgba(15,15,15, 0.8);
     display: flex;
@@ -136,6 +136,12 @@ header {
     transition: 0.2s all ease;
 }
 
+.menu-line {
+    width: 100px;
+    border-top: 1px solid white;
+    margin: auto;
+}
+
 .add-button {
     position: fixed;
     bottom: 1rem;
@@ -153,7 +159,7 @@ header {
 }
 
 .heading-container {
-    max-width: 80%;
+    width: 80%;
     margin: auto;
     padding: 10%;
 }
@@ -163,11 +169,13 @@ header {
     text-align: center;
 }
 
+.heading-line {
+    max-width: 50%;
+    border-top: 1px solid white;
+    margin: auto;
+}
 
-
-
-
-/* About */
+/* Team */
 .team-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -175,7 +183,7 @@ header {
 }
 
 .team-text {
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .team-name {
@@ -189,7 +197,15 @@ header {
 }
 
 .divider-line {
-    max-width: 80%;
+    width: 82%;
     border-top: 1px solid white;
     margin: auto;
+}
+
+/* Pitch */
+.pitch-content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 4rem;
+    font-size: 1.2rem;
 }
