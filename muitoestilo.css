@@ -120,17 +120,11 @@ header {
     list-style-type: none;
 }
 
-/* .side-menu li {
-    height: 100%;
-    background-color: chartreuse;
-} */
-
 .menu-link {
     font-size: 1.2rem;
     text-transform: uppercase;
     padding: 2.5rem 4rem;
     transition: 0.3s all linear;
-    /* background-color: aquamarine; */
 }
 
 .menu-link:hover {
@@ -174,7 +168,7 @@ header {
 
 
 /* About */
-.about-content {
+.team-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
@@ -199,125 +193,3 @@ header {
     border-top: 1px solid white;
     margin: auto;
 }
-
-
-/* Projects */
-.projects-heading {
-    font-size: 50px;
-    text-align: center;
-}
-
-.projects-thumbnail {
-    text-align: center;
-    padding: 5%;
-    margin: 5%;
-    transition: 0.3s all linear;
-}
-
-.projects-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.projects-img {
-    width: 55%;
-    margin: 5px;
-}
-
-.projects-thumbnail:hover {
-    scale: 1.1;
-}
-
-/* Project */
-.project-content {
-    display: flex;
-    align-items:center;
-    flex-direction: column; 
-    text-align: center;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-.project-text {
-    font-size: 1rem;
-}
-
-.project-heading {
-    font-size: 50px;
-}
-
-.project-img {
-    width: 100%;
-}
-
-/* Contact form*/
-.contact-heading {
-    font-size: 50px;
-}
-
-.contact-form {
-    max-width: 600px;
-    margin: auto;
-    width: 100%;
-    display: grid;
-    row-gap: 1rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-    border: none;
-    outline: none;
-    font-size: 0.9rem;
-    padding: 15px;
-    color: black;
-    background: white;
-    border-radius: 0.4rem;
-}
-
-.contact-form .send-btn {
-    width: 120px;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    font-weight: 500;
-    text-transform: uppercase;
-    padding: 12px;
-    background: white;
-    cursor: pointer;
-}
-
-.contact-form .send-btn:hover {
-    background: rgb(205, 36, 36);
-    transition: 0.3s all linear;
-}
-
-#empty-error {
-    visibility: hidden;
-    transition: 0.5s all linear;
-}
-
-#contact-success {
-    visibility: hidden;
-    transition: 0.5s all linear;
-}
-
-/* Play buttons */
-.play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    font-size: 10rem;
-    color: white;
-    opacity: 20%;
-    transition: 0.9s all ease;
-  }
-
-  .play-btn:hover {
-    opacity: 70%;
-    /* text-shadow: 0 0 10px rgba(200,200,200,0.7); */
-    transition: 0.6s all ease;
-  }
