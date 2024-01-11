@@ -208,4 +208,29 @@ header {
     grid-template-columns: repeat(1, 1fr);
     gap: 4rem;
     font-size: 1.2rem;
+    text-align: center;
+    max-width: 80%;
+}
+
+/* Emotion of the day */
+.emotion-of-the-day h1 {
+    font-size: 100px;
+}
+
+.emotion-of-the-day h2 {
+    font-size: 40px;
+    padding: 50px;
+}
+
+/* References */
+.refs-content {
+    max-width: 80%;
+}
+
+.emphasis {
+    text-align: center;
+}
+
+ul {
+    padding-left: 30px;
 }
